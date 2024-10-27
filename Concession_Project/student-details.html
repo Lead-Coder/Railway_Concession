@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details - College Railway Concession</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="officer-login.html">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="content">
+                <h1>Student Details</h1>
+                <form id="search-form">
+                    <div class="form-group">
+                        <label for="student-id">Student ID:</label>
+                        <input type="text" id="student-id" name="student-id" required>
+                    </div>
+                    <button type="submit">Search</button>
+                </form>
+                <div id="student-info">
+                    <h2>Student Information</h2>
+                    <table>
+                        <tr>
+                            <th>Name</th>
+                            <td id="student-name">Rohit</td>
+                        </tr>
+                        <tr>
+                            <th>College</th>
+                            <td id="student-college">Sardar Patel Institute of Technology</td>
+                        </tr>
+                        <tr>
+                            <th>Student-ID</th>
+                            <td id="student-id">20243010</td>
+                        </tr>
+                        <tr>
+                            <th>Year</th>
+                            <td id="student-year">2nd Year</td>
+                        </tr>
+                        <tr>
+                            <th>Address</th>
+                            <td id="student-address">Verna Apartment, Charni Rd.</td>
+                        </tr>
+                        <tr>
+                            <th>Email_ID</th>
+                            <td id="student-mail">abc@gmail.com</td>
+                        </tr>
+                        <tr>
+                            <th>Concession Status</th>
+                            <td id="concession-status">Active</td>
+                        </tr>
+                    </table>
+                    <button id="approve-btn">Approve Concession</button>
+                    <button id="reject-btn">Reject Concession</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 College Railway Concession. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
