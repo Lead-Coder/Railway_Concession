@@ -54,8 +54,6 @@ h2 {
 }
 
 .image-box {
-    max-width: 1200rem;
-    margin: 0 auto;
     padding: 0 35px;
     display: flex;
     justify-content: space-between;
