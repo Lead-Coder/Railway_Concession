@@ -10,6 +10,10 @@ module.exports = (sequelize, Sequelize) => {
         },
         salary: {
             type: Sequelize.FLOAT
+        },
+        password: { // Add password field for authentication
+            type: Sequelize.STRING,
+            allowNull: false
         }
     });
 

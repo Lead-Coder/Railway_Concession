@@ -15,7 +15,7 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-const db = require("./app/model");
+const db = require("./model");
 db.sequelize.sync();
 
 // db.sequelize.sync({ force: true }).then(() => {
@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
     res.json({ message: "Welcome to my application." });
 });
 
-require("./app/routes/profile.routes")(app);
+require("./router/student.router")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;
