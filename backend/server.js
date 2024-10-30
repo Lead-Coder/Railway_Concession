@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
 });
 
 require("./router/student.router")(app);
-
+require("./controller/concession.controller")
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

@@ -6,5 +6,6 @@ module.exports = app => {
     router.post("/register", Student.register);
     router.post("/login", Student.login);
     router.get("/all",auth, Student.findAll);
+    router.get("/apply",auth, Student.apply);
     app.use('/api/student', router);
 };

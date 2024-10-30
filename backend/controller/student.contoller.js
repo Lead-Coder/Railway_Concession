@@ -3,6 +3,7 @@ const Student = db.student;
 const Op = db.Sequelize.Op;
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const Concession = db.concession;
 
 const SECRET_KEY = "your_secret_key"; // Replace this with an actual secret key
 
@@ -172,3 +173,34 @@ exports.register = async (req, res) => {
         });
     }
 };
+
+exports.apply = async (req,res) =>{
+    try {
+        const { classType, quota, applicationDate, from, to, period, route, concessionFee } = req.body;
+
+        // Check if student exists
+        const uid = req.user.id;
+        const student = await Student.findByPk(uid);
+        if (!student) {
+            return res.status(404).json({ message: "Student not found" });
+        }
+
+        // Create a new concession
+        const concession = await Concession.create({
+            uid,
+            class: classType,
+            quota,
+            application_date: applicationDate,
+            from,
+            to,
+            period,
+            route,
+            concession_fee: concessionFee,
+            expiry_date: null,  // initially null, set when approved
+        });
+
+        return res.status(201).json({ message: "Concession application submitted", concession });
+    } catch (error) {
+        return res.status(500).json({ message: "Error applying for concession", error: error.message });
+    }
+}

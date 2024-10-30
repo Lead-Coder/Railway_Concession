@@ -58,7 +58,33 @@ exports.login = async (req, res) => {
     }
 };
 
-exports.approve = (req,res) =>{
-    const { offcier_id } = req.user;
-    
-}
+exports.approve = async (req, res) => {
+    try {
+        const { concessionId } = req.body;
+        const officerId = req.user.id;
+        // Check if officer exists
+        const officer = await Officer.findByPk(officerId);
+        if (!officer) {
+            return res.status(404).json({ message: "Officer not found" });
+        }
+
+        // Find the concession
+        const concession = await Concession.findByPk(concessionId);
+        if (!concession) {
+            return res.status(404).json({ message: "Concession not found" });
+        }
+
+        // Approve the concession
+        const approvalDate = new Date();
+        const expiryDate = new Date();
+        expiryDate.setMonth(approvalDate.getMonth() + concession.period);
+
+        concession.approved_by = officerId;
+        concession.expiry_date = expiryDate;
+        await concession.save();
+
+        return res.status(200).json({ message: "Concession approved", concession });
+    } catch (error) {
+        return res.status(500).json({ message: "Error approving concession", error: error.message });
+    }
+};

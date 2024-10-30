@@ -26,6 +26,10 @@ module.exports = (sequelize, Sequelize) => {
         route: {
             type: Sequelize.STRING
         },
+        status: {
+            type: Sequelize.STRING,
+            defaultValue: "active" // "active" by default, will be changed to "expired" when invalid
+        },
         concession_fee: {
             type: Sequelize.FLOAT
         },
