@@ -8,7 +8,7 @@ const Concession = db.concession;
 // Register a new Officer
 exports.register = async (req, res) => {
     try {
-        const { officer_age, salary, password } = req.body;
+        const { username, officer_age, salary, password } = req.body;
         if (!officer_age || !salary || !password) {
             return res.status(400).send({ message: "All fields are required!" });
         }
@@ -18,6 +18,7 @@ exports.register = async (req, res) => {
 
         // Create and save the officer
         const officer = {
+            username,
             officer_age,
             salary,
             password: hashedPassword

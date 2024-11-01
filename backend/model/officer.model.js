@@ -5,6 +5,10 @@ module.exports = (sequelize, Sequelize) => {
             primaryKey: true,
             autoIncrement: true
         },
+        username: { 
+            type: Sequelize.STRING,
+            allowNull: false
+        },
         officer_age: {
             type: Sequelize.INTEGER
         },
@@ -14,7 +18,7 @@ module.exports = (sequelize, Sequelize) => {
         password: { // Add password field for authentication
             type: Sequelize.STRING,
             allowNull: false
-        }
+        },
     });
 
     return Officer;
