@@ -1,10 +1,29 @@
-import { Button } from "@/components/ui/button"
+import { Navbar } from "./components/Navbar"
+import Landing from "./pages/Landing"
+import OfficerDashboard from "./pages/OfficerDashboard"
+import OfficerLogin from "./pages/OfficerLogin"
+import OfficerSignup from "./pages/OfficerSignup"
+import StudentDashboard from "./pages/StudentDashboard"
+import StudentLogin from "./pages/StudentLogin"
+import StudentSignup from "./pages/StudentSignup"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 
 function App() {
   return (
-    <>
-      <Button>Hello World</Button>
-    </>
+    <div className="absolute -z-50">
+      <Router>
+        <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/officer/login" element={<OfficerLogin />} />
+        <Route path="/officer/signup" element={<OfficerSignup />} />
+        <Route path="/officer/dashboard" element={<OfficerDashboard />} />
+        <Route path="/student/login" element={<StudentLogin />} />
+        <Route path="/student/signup" element={<StudentSignup />} />
+        <Route path="/student/dashboard" element={<StudentDashboard />} />
+        </Routes>
+      </Router>
+    </div>
   )
 }
 

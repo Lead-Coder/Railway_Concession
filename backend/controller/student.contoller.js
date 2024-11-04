@@ -156,10 +156,15 @@ exports.register = async (req, res) => {
         });
         return;
     }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
     try {
+        const existingUser = await Student.findOne({ where: { email_id } });
+        if (existingUser) {
+            res.status(400).send({
+                message: "User already exists with this email!"
+            });
+            return;
+        }
+        const hashedPassword = await bcrypt.hash(password, 10);
         const student = await Student.create({
             name,
             email_id,
