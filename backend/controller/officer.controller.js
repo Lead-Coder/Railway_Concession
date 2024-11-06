@@ -81,6 +81,7 @@ exports.approve = async (req, res) => {
         expiryDate.setMonth(approvalDate.getMonth() + concession.period);
 
         concession.approved_by = officerId;
+        concession.status = "active";
         concession.expiry_date = expiryDate;
         await concession.save();
 

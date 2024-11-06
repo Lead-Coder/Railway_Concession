@@ -28,7 +28,10 @@ module.exports = (sequelize, Sequelize) => {
         },
         status: {
             type: Sequelize.STRING,
-            defaultValue: "active" // "active" by default, will be changed to "expired" when invalid
+            defaultValue: "waiting", 
+            validate: {
+                isIn: [['waiting', 'active', 'expired']]
+            }
         },
         concession_fee: {
             type: Sequelize.FLOAT

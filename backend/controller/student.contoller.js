@@ -59,8 +59,7 @@ exports.findAll = async (req, res) => {
 
 // Find a single Student by id
 exports.findOne = async (req, res) => {
-    const id = req.params.id;
-
+    const id = req.user.id;
     try {
         const data = await Student.findByPk(id);
         if (data) {
@@ -209,3 +208,23 @@ exports.apply = async (req,res) =>{
         return res.status(500).json({ message: "Error applying for concession", error: error.message });
     }
 }
+
+exports.findConcession = async (req, res) => {
+    try {
+        const id = req.user.id; // Assuming the user ID is stored in req.user.id
+        const concession = await Concession.findAll({ where: { uid: id } });
+
+        if (!concession) {
+            return res.status(404).send({
+                message: "Concession not found for this student.",
+                concession: concession
+            });
+        }
+
+        res.send(concession);
+    } catch (err) {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving the concession."
+        });
+    }
+};
