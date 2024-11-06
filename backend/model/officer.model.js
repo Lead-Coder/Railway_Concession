@@ -9,11 +9,16 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING,
             allowNull: false
         },
+        name: { 
+            type: Sequelize.STRING,
+            allowNull: false
+        },
         officer_age: {
             type: Sequelize.INTEGER
         },
         salary: {
-            type: Sequelize.FLOAT
+            type: Sequelize.FLOAT,
+            default: 250000
         },
         password: { // Add password field for authentication
             type: Sequelize.STRING,

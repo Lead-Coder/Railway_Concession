@@ -2,14 +2,15 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const SECRET_KEY = "your_secret_key"; // Make sure to replace this with an environment variable
 const db = require("../model");
+const { where } = require("sequelize");
 const Officer = db.officer;
 const Concession = db.concession;
 
 // Register a new Officer
 exports.register = async (req, res) => {
     try {
-        const { username, officer_age, salary, password } = req.body;
-        if (!officer_age || !salary || !password) {
+        const { username, name, officer_age, salary, password } = req.body;
+        if (!officer_age || !password || !name || !username) {
             return res.status(400).send({ message: "All fields are required!" });
         }
 
@@ -19,6 +20,7 @@ exports.register = async (req, res) => {
         // Create and save the officer
         const officer = {
             username,
+            name,
             officer_age,
             salary,
             password: hashedPassword
@@ -34,13 +36,13 @@ exports.register = async (req, res) => {
 // Login an Officer
 exports.login = async (req, res) => {
     try {
-        const { officer_id, password } = req.body;
-        if (!officer_id || !password) {
+        const { username, password } = req.body;
+        if (!username || !password) {
             return res.status(400).send({ message: "Officer ID and password are required!" });
         }
 
         // Find the officer by ID
-        const officer = await Officer.findByPk(officer_id);
+        const officer = await Officer.findOne({ where: { username } });
         if (!officer) {
             return res.status(404).send({ message: "Officer not found!" });
         }
@@ -52,7 +54,7 @@ exports.login = async (req, res) => {
         }
 
         // Generate a JWT token
-        const token = jwt.sign({ id: officer.officer_id }, SECRET_KEY, { expiresIn: "1h" });
+        const token = jwt.sign({ id: officer.username }, SECRET_KEY, { expiresIn: "1h" });
         res.send({ message: "Authentication successful", token });
     } catch (err) {
         res.status(500).send({ message: err.message || "Some error occurred while logging in." });
