@@ -34,7 +34,7 @@ export const Hero: React.FC<HeroProps> = ({onGetStarted}) => {
             <Button className="w-full md:w-1/3" onClick={onGetStarted}>Get Started</Button>
             <a
               rel="noreferrer noopener"
-              href="https://github.com/leoMirandaa/shadcn-landing-page.git"
+              href="https://github.com/Lead-Coder/Railway_Concession/"
               target="_blank"
               className={`w-full md:w-1/3 ${buttonVariants({
                 variant: "outline",

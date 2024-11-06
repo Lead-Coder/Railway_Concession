@@ -30,7 +30,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING,
             defaultValue: "waiting", 
             validate: {
-                isIn: [['waiting', 'active', 'expired']]
+                isIn: [['waiting', 'active', 'expired', 'rejected']]
             }
         },
         concession_fee: {

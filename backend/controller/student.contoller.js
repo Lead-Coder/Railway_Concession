@@ -220,7 +220,7 @@ exports.findConcession = async (req, res) => {
                 concession: concession
             });
         }
-
+        console.log(concession)
         res.send(concession);
     } catch (err) {
         res.status(500).send({

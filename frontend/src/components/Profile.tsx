@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -16,6 +17,7 @@ import axios from 'axios';
 const Profile: React.FC = () => {
     const [show, setShow] = useState(false);
     const [name, setName] = useState('');
+    const navigate = useNavigate();
 
     const handleShow = () => setShow(true);
 
@@ -44,6 +46,11 @@ const Profile: React.FC = () => {
         }
     }, [show]);
 
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        navigate('/');
+    };
+
     return (
         <>
         <Popover>
@@ -59,6 +66,9 @@ const Profile: React.FC = () => {
                     </CardHeader>
                     <CardContent>
                         <h5>{name}</h5>
+                        <Button onClick={handleLogout} className="mt-4">
+                            Logout
+                        </Button>
                     </CardContent>
                 </Card>
             </PopoverContent>

@@ -1,4 +1,3 @@
-import { Navbar } from '@/components/Navbar';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -11,8 +10,9 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import axios from 'axios';
+import { Navbar2 } from '@/components/Navbar2';
 
-const StudentDashboard: React.FC = () => {
+const OfficerHistory: React.FC = () => {
     const [list, setList] = useState<ConProp[]>([]);
     const navigate = useNavigate();
 
@@ -26,12 +26,11 @@ const StudentDashboard: React.FC = () => {
             }
 
             try {
-                const response = await axios.get('http://localhost:3000/api/student/concession', {
+                const response = await axios.get('http://localhost:3000/api/officer/concessions', {
                     headers: {
                         'Authorization': token,
                     },
                 });
-                console.log(response.data[0]);
                 setList(response.data);
             } catch (error) {
                 console.error(error);
@@ -39,15 +38,15 @@ const StudentDashboard: React.FC = () => {
         };
 
         fetchConcessions();
-    }, []);
+    }, [navigate]);
 
     return (
         <div className='flex flex-col items-center justify-center'>
-            <Navbar />
-            <h2 className='text-xl m-10'>Your Concessions</h2>
+            <Navbar2 />
+            <h2 className='text-xl m-10'>Approved and Rejected Concessions</h2>
             <div className="container flex w-3/4 mt-10">
                 <Table>
-                    <TableCaption>A list of your recent applications.</TableCaption>
+                    <TableCaption>A list of approved and rejected concessions.</TableCaption>
                     <TableHeader>
                         <TableRow>
                             <TableHead className="w-[100px]">Invoice</TableHead>
@@ -89,7 +88,7 @@ interface ConProp {
     concession_fee: number;
 }
 
-const Row: React.FC<ConProp> = ({ form_id, status,from, to, period, expiry_date, concession_fee }) => {
+const Row: React.FC<ConProp> = ({ form_id, status, from, to, period, expiry_date, concession_fee }) => {
     return (
         <TableRow>
             <TableCell className="font-medium">{form_id}</TableCell>
@@ -103,4 +102,4 @@ const Row: React.FC<ConProp> = ({ form_id, status,from, to, period, expiry_date,
     );
 };
 
-export default StudentDashboard;
+export default OfficerHistory;
