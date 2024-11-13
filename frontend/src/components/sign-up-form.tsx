@@ -18,13 +18,21 @@ export function SignupForm() {
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    // Check for empty fields
+    if (!name || !email || !phone || !password || !confirmPassword) {
+      setErrorMessage("All fields are required.");
+      return;
+    }
+
+    // Check if passwords match
     if (password !== confirmPassword) {
-      alert("Passwords do not match");
+      setErrorMessage("Passwords do not match.");
       return;
     }
 
@@ -47,6 +55,11 @@ export function SignupForm() {
       }
     } catch (error) {
       console.error(error);
+      if (error.response && error.response.status === 401) {
+        setErrorMessage("User already exists with this email!");
+      } else {
+        setErrorMessage("An error occurred. Please try again.");
+      }
     }
   };
 
@@ -59,6 +72,11 @@ export function SignupForm() {
       <CardContent>
         <form onSubmit={handleSubmit}>
           <div className="grid gap-4">
+            {errorMessage && (
+              <p className="text-red-600 text-sm text-center">
+                {errorMessage}
+              </p>
+            )}
             <div className="grid gap-2">
               <Label htmlFor="name">Name</Label>
               <Input
