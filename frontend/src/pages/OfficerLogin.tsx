@@ -24,6 +24,7 @@ import { Label } from "@/components/ui/label"
 function LoginFormOff() {
   const [username, setusername] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState(''); 
   const navigate = useNavigate();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,6 +46,7 @@ function LoginFormOff() {
         navigate('/officer/dashboard');
       }
     }catch (error) {
+      setErrorMessage('Invalid email or password. Please try again.');
       console.error(error);
     }
   };
@@ -74,6 +76,10 @@ function LoginFormOff() {
             </div>
             <Input id="password" type="password" onChange={(e) => setPassword(e.target.value)} required />
           </div>
+          {/* Display error message if it exists */}
+          {errorMessage && (
+            <p className="text-red-500 text-sm mt-2">{errorMessage}</p>
+          )}
           <Button type="submit" className="w-full" onClick={handleSubmit}>
             Login
           </Button>

@@ -148,39 +148,39 @@ exports.login = async (req, res) => {
 // Register a Student with password hashing
 exports.register = async (req, res) => {
     const { name, email_id, phone_no, password } = req.body;
-  
+
     if (!name || !email_id || !phone_no || !password) {
-      res.status(400).send({
-        message: "All fields are required."
-      });
-      return;
-    }
-  
-    try {
-      const existingUser = await Student.findOne({ where: { email_id } });
-      if (existingUser) {
-        res.status(401).send({
-          message: "User already exists with this email!"
+        res.status(400).send({
+            message: "All fields are required."
         });
         return;
-      }
-  
-      const hashedPassword = await bcrypt.hash(password, 10);
-      const student = await Student.create({
-        name,
-        email_id,
-        phone_no,
-        password: hashedPassword
-      });
-      res.status(200).send(student);
+    }
+
+    try {
+        const existingUser = await Student.findOne({ where: { email_id } });
+        if (existingUser) {
+            res.status(401).send({
+                message: "User already exists with this email!"
+            });
+            return;
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const student = await Student.create({
+            name,
+            email_id,
+            phone_no,
+            password: hashedPassword
+        });
+        res.status(200).send(student);
     } catch (err) {
-      res.status(500).send({
-        message: err.message || "Some error occurred while registering the Student."
-      });
+        res.status(500).send({
+            message: err.message || "Some error occurred while registering the Student."
+        });
     }
 };
-  
-exports.apply = async (req,res) =>{
+
+exports.apply = async (req, res) => {
     try {
         const { classType, quota, applicationDate, from, to, period, route, concessionFee } = req.body;
 

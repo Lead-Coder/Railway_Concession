@@ -86,7 +86,7 @@ const OfficerDashboard: React.FC = () => {
                             <TableHead>To</TableHead>
                             <TableHead>Period</TableHead>
                             <TableHead>Expiry Date</TableHead>
-                            <TableHead className="text-right">Amount</TableHead>
+                            <TableHead>Amount</TableHead>
                             <TableHead className="text-right">Actions</TableHead>
                         </TableRow>
                     </TableHeader>
@@ -133,7 +133,7 @@ const Row: React.FC<ConProp> = ({ form_id, status, from, to, period, expiry_date
             <TableCell>{to}</TableCell>
             <TableCell>{period}</TableCell>
             <TableCell>{expiry_date}</TableCell>
-            <TableCell className="text-right">{concession_fee}</TableCell>
+            <TableCell>{concession_fee}</TableCell>
             <TableCell className="text-right">
                 <Button onClick={onApprove} className="mr-2">Approve</Button>
                 <Button onClick={onReject} variant="destructive">Reject</Button>

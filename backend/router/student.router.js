@@ -1,6 +1,6 @@
 const auth = require('../authMiddleware.js')
 module.exports = app => {
-    const Student = require("../controller/student.contoller.js");
+    const Student = require("../controller/student.controller.js");
     var router = require("express").Router();
     // Register a Student
     router.post("/register", Student.register);

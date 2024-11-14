@@ -53,7 +53,7 @@ export function SignupForm() {
       if (response.status === 200) {
         navigate('/student/login');
       }
-    } catch (error) {
+    } catch (error : any) {
       console.error(error);
       if (error.response && error.response.status === 401) {
         setErrorMessage("User already exists with this email!");
@@ -72,11 +72,6 @@ export function SignupForm() {
       <CardContent>
         <form onSubmit={handleSubmit}>
           <div className="grid gap-4">
-            {errorMessage && (
-              <p className="text-red-600 text-sm text-center">
-                {errorMessage}
-              </p>
-            )}
             <div className="grid gap-2">
               <Label htmlFor="name">Name</Label>
               <Input
@@ -130,6 +125,11 @@ export function SignupForm() {
                 required
               />
             </div>
+                {errorMessage && (
+                  <p className="text-red-600 text-sm text-center">
+                    {errorMessage}
+                  </p>
+                )}
             <Button type="submit" className="w-full">
               Register
             </Button>

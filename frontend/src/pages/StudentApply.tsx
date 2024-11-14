@@ -55,16 +55,16 @@ const StudentApply: React.FC = () => {
     };
 
     return (
-        <div className='flex flex-col items-center justify-center'>
+        <div className='flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100'>
             <Navbar />
-            <Card className="w-full max-w-lg mt-10">
+            <Card className="w-full max-w-lg mt-10 bg-white dark:bg-gray-800 shadow-lg dark:shadow-none border border-gray-200 dark:border-gray-700">
                 <CardHeader>
-                    <CardTitle>Apply for Concession</CardTitle>
+                    <CardTitle className="text-gray-900 dark:text-gray-100">Apply for Concession</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
-                            <Label htmlFor="classType">Class Type</Label>
+                            <Label htmlFor="classType" className="text-gray-800 dark:text-gray-300">Class Type</Label>
                             <Input
                                 id="classType"
                                 name="classType"
@@ -72,10 +72,11 @@ const StudentApply: React.FC = () => {
                                 value={formData.classType}
                                 onChange={handleChange}
                                 required
+                                className="dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             />
                         </div>
                         <div>
-                            <Label htmlFor="quota">Quota</Label>
+                            <Label htmlFor="quota" className="text-gray-800 dark:text-gray-300">Quota</Label>
                             <Input
                                 id="quota"
                                 name="quota"
@@ -83,10 +84,11 @@ const StudentApply: React.FC = () => {
                                 value={formData.quota}
                                 onChange={handleChange}
                                 required
+                                className="dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             />
                         </div>
                         <div>
-                            <Label htmlFor="applicationDate">Application Date</Label>
+                            <Label htmlFor="applicationDate" className="text-gray-800 dark:text-gray-300">Application Date</Label>
                             <Input
                                 id="applicationDate"
                                 name="applicationDate"
@@ -94,10 +96,11 @@ const StudentApply: React.FC = () => {
                                 value={formData.applicationDate}
                                 onChange={handleChange}
                                 required
+                                className="dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             />
                         </div>
                         <div>
-                            <Label htmlFor="from">From</Label>
+                            <Label htmlFor="from" className="text-gray-800 dark:text-gray-300">From</Label>
                             <Input
                                 id="from"
                                 name="from"
@@ -105,10 +108,11 @@ const StudentApply: React.FC = () => {
                                 value={formData.from}
                                 onChange={handleChange}
                                 required
+                                className="dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             />
                         </div>
                         <div>
-                            <Label htmlFor="to">To</Label>
+                            <Label htmlFor="to" className="text-gray-800 dark:text-gray-300">To</Label>
                             <Input
                                 id="to"
                                 name="to"
@@ -116,10 +120,11 @@ const StudentApply: React.FC = () => {
                                 value={formData.to}
                                 onChange={handleChange}
                                 required
+                                className="dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             />
                         </div>
                         <div>
-                            <Label htmlFor="period">Period</Label>
+                            <Label htmlFor="period" className="text-gray-800 dark:text-gray-300">Period</Label>
                             <Input
                                 id="period"
                                 name="period"
@@ -127,10 +132,11 @@ const StudentApply: React.FC = () => {
                                 value={formData.period}
                                 onChange={handleChange}
                                 required
+                                className="dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             />
                         </div>
                         <div>
-                            <Label htmlFor="route">Route</Label>
+                            <Label htmlFor="route" className="text-gray-800 dark:text-gray-300">Route</Label>
                             <Input
                                 id="route"
                                 name="route"
@@ -138,10 +144,11 @@ const StudentApply: React.FC = () => {
                                 value={formData.route}
                                 onChange={handleChange}
                                 required
+                                className="dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             />
                         </div>
                         <div>
-                            <Label htmlFor="concessionFee">Concession Fee</Label>
+                            <Label htmlFor="concessionFee" className="text-gray-800 dark:text-gray-300">Concession Fee</Label>
                             <Input
                                 id="concessionFee"
                                 name="concessionFee"
@@ -149,9 +156,12 @@ const StudentApply: React.FC = () => {
                                 value={formData.concessionFee}
                                 onChange={handleChange}
                                 required
+                                className="dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             />
                         </div>
-                        <Button type="submit" className="w-full">Submit</Button>
+                        <Button type="submit" className="w-full bg-blue-600 dark:bg-blue-500 text-white dark:text-gray-200">
+                            Submit
+                        </Button>
                     </form>
                 </CardContent>
             </Card>
